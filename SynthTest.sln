@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SynthTest", "SynthTest\SynthTest.shproj", "{2858453C-3B48-4751-91B5-0FAA46D1AE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynthTest.iOS", "iOS\SynthTest.iOS.csproj", "{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Default|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Default|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|Any CPU.Build.0 = Release|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|iPhone.Build.0 = Release|iPhone
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D1CDC3C4-0E82-4DBC-8FB1-E137BEB32C2F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.IndentBlocksInsideExpressions = True
+		$2.AnonymousMethodBraceStyle = NextLine
+		$2.PropertyBraceStyle = NextLine
+		$2.PropertyGetBraceStyle = NextLine
+		$2.PropertySetBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EventAddBraceStyle = NextLine
+		$2.EventRemoveBraceStyle = NextLine
+		$2.StatementBraceStyle = NextLine
+		$2.ElseNewLinePlacement = NewLine
+		$2.CatchNewLinePlacement = NewLine
+		$2.FinallyNewLinePlacement = NewLine
+		$2.WhileNewLinePlacement = DoNotCare
+		$2.ArrayInitializerWrapping = DoNotChange
+		$2.ArrayInitializerBraceStyle = NextLine
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.NewLineBeforeConstructorInitializerColon = NewLine
+		$2.NewLineAfterConstructorInitializerColon = SameLine
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

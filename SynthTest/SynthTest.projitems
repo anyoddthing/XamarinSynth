@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{2858453C-3B48-4751-91B5-0FAA46D1AE88}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SynthTest</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SynthTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioIO\AudioIODevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\Logger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\DisposableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioIO\AudioDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\PerformanceTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\SIMD.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Synthesizers\Synthesizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Buffers\Memory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\AudioSourceChannelInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\ToneGeneratorAudioSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\AudioSourcePlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Buffers\FloatHeapBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\AudioSourceChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\IAudioSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Params\Parameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sources\AAudioSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Processors\ADSREnvelope.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Buffers\SampleBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sequencer\Sequencer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Processors\Amplifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioCore\Sequencer\BeatSequencer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SequencedSynth\SequencedSynth.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)AudioIO\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Util\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Buffers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Synthesizers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Sources\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Processors\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Params\" />
+    <Folder Include="$(MSBuildThisFileDirectory)AudioCore\Sequencer\" />
+    <Folder Include="$(MSBuildThisFileDirectory)SequencedSynth\" />
+  </ItemGroup>
+</Project>
