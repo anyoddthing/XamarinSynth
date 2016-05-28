@@ -89,8 +89,6 @@ namespace SynthTest
                 AudioSession.Category = AudioSessionCategory.PlayAndRecord;
             }
 
-            AudioSession.AudioRouteChanged += AudioSesssion_AudioRouteChanged;
-
             FixRouteIfSetToReceiver();
 
             AudioSession.PreferredHardwareSampleRate = targetSampleRate;
@@ -98,10 +96,13 @@ namespace SynthTest
             UpdateCurrentBufferSize();
             PrepareFloatBuffers(_actualBufferSize);
 
+            CreateAudioUnit();
+            _format = _audioUnit.GetAudioFormat(AudioUnitScopeType.Output, 1);
+            _audioUnit.Stop();
+            _audioUnit.Start();
+
             AudioSession.SetActive(true);
             _isRunning = true;
-
-            RoutingChanged();
 
             Console.WriteLine("Opened ios audio device with: inputs: {0}, outputs: {1}, sampleRate: {2}, buffer: {3}",
                 _numInputChannels, _numOutputChannels, _sampleRate, _actualBufferSize);
@@ -114,8 +115,6 @@ namespace SynthTest
                 _isRunning = false;
 
                 AudioSession.Category = AudioSessionCategory.MediaPlayback;
-
-                AudioSession.AudioRouteChanged -= AudioSesssion_AudioRouteChanged;
                 AudioSession.SetActive(false);
 
                 if (_audioUnit != null)
@@ -173,31 +172,10 @@ namespace SynthTest
         {
             var bufferDuration = _sampleRate > 0 ? (float)(_preferredBufferSize / (double)_sampleRate) : 0.0f;
             AudioSession.PreferredHardwareIOBufferDuration = bufferDuration;
-            _actualBufferSize = (int) (_sampleRate * AudioSession.CurrentHardwareIOBufferDuration + 0.5f);
+            _actualBufferSize = (int)(_sampleRate * AudioSession.CurrentHardwareIOBufferDuration + 0.5f);
 
             Console.WriteLine("UpdateBufferSize: preferred: {0} current: {1}",
                 AudioSession.PreferredHardwareIOBufferDuration, AudioSession.CurrentHardwareIOBufferDuration);
-        }
-
-        void AudioSesssion_AudioRouteChanged(object sender, AudioSessionRouteChangeEventArgs e)
-        {
-            RoutingChanged();
-        }
-
-        void RoutingChanged()
-        {
-            if (!_isRunning)
-                return;
-            
-            UpdateDeviceInfo();
-            CreateAudioUnit();
-            AudioSession.SetActive(false);
-
-            _format = _audioUnit.GetAudioFormat(AudioUnitScopeType.Output, 1);
-            UpdateCurrentBufferSize();
-            _audioUnit.Stop();
-            _audioUnit.Start();
-            AudioSession.SetActive(true);
         }
 
         void ResetFormat(int numChannels)
@@ -256,7 +234,7 @@ namespace SynthTest
 
         void PrepareFloatBuffers(int bufferSize)
         {
-            var deviceBufferSize = (int) (AudioSession.CurrentHardwareSampleRate * AudioSession.CurrentHardwareIOBufferDuration + 0.5f);
+            var deviceBufferSize = (int)(AudioSession.CurrentHardwareSampleRate * AudioSession.CurrentHardwareIOBufferDuration + 0.5f);
             Console.WriteLine("Prepare buffers: {0}, deviceBuffer: {1}, latency: {2}, {3}", bufferSize, deviceBufferSize, 
                 AudioSession.CurrentHardwareOutputLatency, AudioSession.CurrentHardwareOutputLatency * AudioSession.CurrentHardwareSampleRate);
             if (_sampleBuffer != null)
@@ -284,7 +262,7 @@ namespace SynthTest
         Stopwatch _clock = new Stopwatch();
 
         unsafe AudioUnitStatus AudioUnit_RenderCallback(AudioUnitRenderActionFlags actionFlags, 
-            AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
+                                                        AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
         {
             _clock.Restart();
             AudioUnitStatus err = AudioUnitStatus.OK;
@@ -298,7 +276,7 @@ namespace SynthTest
             {
                 if (numberFrames > _sampleBuffer.NumSamples)
                 {
-                    PrepareFloatBuffers((int) numberFrames);
+                    PrepareFloatBuffers((int)numberFrames);
                 }
 
                 if (_audioInputIsAvailable && _numInputChannels > 0)
@@ -310,7 +288,7 @@ namespace SynthTest
                         float* rightInput = _inputChannels[1];
                         for (var i = 0; i < numberFrames; ++i)
                         {
-                            *leftInput++  = *shortData++ * ShortToFloat;
+                            *leftInput++ = *shortData++ * ShortToFloat;
                             *rightInput++ = *shortData++ * ShortToFloat;
                         }
                     }
@@ -319,14 +297,14 @@ namespace SynthTest
                         float* leftInput = _inputChannels[0];
                         for (var i = 0; i < numberFrames; ++i)
                         {
-                            *leftInput++  = *shortData++ * ShortToFloat;
+                            *leftInput++ = *shortData++ * ShortToFloat;
                             ++shortData;
                         }
                     }
                 }
                 else
                 {
-                    for (var i = _numInputChannels; --i >= 0; )
+                    for (var i = _numInputChannels; --i >= 0;)
                     {
                         _sampleBuffer.ClearChannel(i);
                     }
@@ -343,7 +321,7 @@ namespace SynthTest
                     byte* bytes = (byte*)_outputChannels[0];
                     for (var i = 0; i < numberFrames * sizeof(float); ++i)
                     {
-                        _out.WriteByte(*bytes++) ;   
+                        _out.WriteByte(*bytes++);   
                     }
                 }
 
